@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+const defaultBaseUrl = import.meta.env.DEV ? 'http://localhost:5000' : 'https://taskflow-m1d1.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_URL || defaultBaseUrl;
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: `${API_BASE_URL.replace(/\/$/, '')}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
